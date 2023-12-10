@@ -50,9 +50,9 @@ app.post('/canciones', async (req, res) => {
   const { id, titulo, artista, tono } = req.body;
   const newCancion = { id, titulo, artista, tono };
 
-  if ( !newCancion.titulo.trim() || !newCancion.artista.trim() || !newCancion.tono.trim() ) {
+  if ( !newCancion.titulo || !newCancion.artista || !newCancion.tono ) {
     return res.status(401).json({
-      message: 'La canción no fue agregada por tener campos vacíos.',
+      message: 'La canción no fue agregada por tener campos vacíos o incompletos.',
     });
     // return console.log('La canción no fue agregada por tener campos vacíos.');
   }
@@ -81,9 +81,9 @@ app.put('/canciones/:id', async (req, res) => {
   const id = parseInt(req.params.id);
   const { titulo, artista, tono } = req.body;
 
-  if (!titulo.trim() || !artista.trim() || !tono.trim()) {
+  if (!titulo || !artista || !tono ) {
     return res.status(401).json({
-      message: 'La canción no puede tener campos vacíos.',
+      message: 'La canción no puede tener campos vacíos o incompletos.',
     });
     // return console.log('La canción no puede tener campos vacíos.');
   }
